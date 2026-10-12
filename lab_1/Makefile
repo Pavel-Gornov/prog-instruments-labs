@@ -17,16 +17,9 @@ format:
 typecheck:
 	pyright .
 
-fullcheck:
-	ruff check .
-	pyright .
-	ruff format --check
+fullcheck: lint format typecheck
 
-fulltest:
-	ruff check .
-	pyright .
-	ruff format --check
-	python -m unittest discover -s tests/ -p "*_test.py"
+fulltest: fullcheck test
 
 precommit:
 	pre-commit install --hook-type pre-commit --hook-type pre-push
